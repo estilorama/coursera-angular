@@ -1,29 +1,38 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app="LunchChecker">
   <head>
     <title>Lunch Checker</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <style>
       .message { font-size: 1.3em; font-weight: bold; }
+
+      input.form-control.classKo{ border:1px solid #a00; }
+      input.form-control.classOk{ border:1px solid #3c763d; }
+
+      span.classOk { color:#3c763d; }
+      span.classKo { color:#a00; }
+
     </style>
   </head>
 <body>
-   <div class="container">
+   <div class="container" ng-controller="LunchCheckerController">
      <h1>Lunch Checker</h1>
 
          <div class="form-group">
              <input id="lunch-menu" type="text"
              placeholder="list comma separated dishes you usually have for lunch"
-             class="form-control">
+             class="form-control {{inputClass}}" ng-model="lunchmenu">
          </div>
          <div class="form-group">
-             <button class="btn btn-default">Check If Too Much</button>
+             <button class="btn btn-default" ng-click="checkLunch()">Check If Too Much</button>
          </div>
-         <div class="form-group message">
+         <div class="form-group message" ng-model="newMessage">
            <!-- Your message can go here. -->
+             <span class="{{messageClass}}">{{newMessage}}</span>
          </div>
    </div>
-
+   <script src="angular.min.js"></script>
+   <script src="app.js"></script>
 </body>
 </html>
