@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ShoppingListApp">
+<head>
+    <meta charset="utf-8">
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <style>body{font-size:1.2em; font-family:Arial,sans-serif;} .addMessage { color:#4cae4c; font-weight:bold; }
+
+        .errorMessage{ color:#a00; font-weight: bold;}
+    </style>
+
+    <title>Custom Service through a Provider</title>
+</head>
+<body>
+
+<div class="container">
+    <h1>Custom Service through a Provider</h1>
+    <div class="row">
+
+        <!-- Shopping List 1 -->
+        <div class="col-md-6">
+            <h2>Shoppping List by Provider</h2>
+            <div ng-controller="ShoppingListController as list">
+                <h3>Add item</h3>
+                <p>
+                    <input type="text" ng-model="list.itemName" placeholder="Item name" size="20">
+                    <input type="text" size="4" ng-model="list.itemQuantity" placeholder="Item Qty">
+                    <button ng-click="list.addItem()">Add</button> <span class="addMessage">{{list.addMessage}}</span>
+                </p>
+                <!--<p class="errorMessage" ng-if="list.errorMessage">{{list.errorMessage}}</p>-->
+                <!--<p class="errorMessage" ng-show="list.errorMessage">{{list.errorMessage}}</p>-->
+                <p class="errorMessage" ng-hide="!list.errorMessage">{{list.errorMessage}}</p>
+                <ol>
+                    <li ng-repeat="item in list.items"><strong>{{ item.name }}</strong>,  {{ item.quantity }} units
+                        <button ng-click="list.removeItem($index)" class="btn btn-danger btn-xs">x</button></li>
+                </ol>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+</body>
+</html>

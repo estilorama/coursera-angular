@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ShoppingListApp">
+<head>
+    <meta charset="utf-8">
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+    <style>body{font-size:1.2em; font-family:Arial,sans-serif;} .addMessage { color:#4cae4c; font-weight:bold; }
+        button.delete{ background:#a00; color:#fff; border:1px solid #a00; border-radius:3px;
+            font-weight:bold}
+    </style>
+
+    <title>Custom Service</title>
+</head>
+<body>
+    <h1>Custom Service</h1>
+
+    <div ng-controller="ShoppingListAddController as itemAdder">
+        <h3>Add new product</h3>
+        <p>
+            <input type="text" ng-model="itemAdder.itemName" placeholder="Item name" size="20">
+            <input type="text" size="4" ng-model="itemAdder.itemQuantity" placeholder="Item Qty">
+            <button ng-click="itemAdder.addItem()">Add</button> <span class="addMessage">{{itemAdder.addMessage}}</span>
+        </p>
+    </div>
+
+    <div ng-controller="ShoppingListShowController as showList">
+        <!-- Shopping List 1 -->
+        <h2>Shopping list</h2>
+        <ol>
+            <li ng-repeat="item in showList.items">{{ item.name }},  {{ item.quantity }} units
+                <button class="delete" ng-click="showList.removeItem($index)">x</button></li>
+        </ol>
+    </div>
+
+</body>
+</html>
