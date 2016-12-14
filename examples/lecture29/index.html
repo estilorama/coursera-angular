@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ShoppingListApp">
+<head>
+    <meta charset="utf-8">
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <style>body{font-size:1.2em; font-family:Arial,sans-serif;} .addMessage { color:#4cae4c; font-weight:bold; }
+
+        .errorMessage{ color:#a00; font-weight: bold;}
+    </style>
+
+    <title>Directives with their own Controller</title>
+</head>
+<body>
+
+<div class="container">
+    <h1>Directives with their own Controller</h1>
+    <div class="row">
+
+        <!-- Shopping List 1 -->
+        <div class="col-md-6">
+            <div id="list" ng-controller="ShoppingListController as list">
+
+                <shopping-list items="list.items" title="{{list.title}}"></shopping-list>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

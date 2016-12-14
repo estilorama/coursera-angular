@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="MenuCategoriesApp">
+<head>
+    <meta charset="utf-8">
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <style>
+            body{font-size:1.2em; font-family:Arial,sans-serif;} .addMessage { color:#4cae4c; font-weight:bold; }
+        .errorMessage{ color:#a00; font-weight: bold;}
+    </style>
+
+    <title>Using $http Service</title>
+</head>
+<body>
+
+<div class="container">
+    <h1>Using $http Service</h1>
+    <div class="row">
+        <div ng-controller="MenuCategoriesController as menu">
+            <div class="col-md-3">
+                <h2>Menu categories</h2>
+                <ol>
+                    <li ng-repeat="category in menu.categories">
+                        <a href="#" ng-click="menu.logMenuItems(category.short_name)">(<strong>{{ category.short_name }}</strong></a>)
+                    {{ category.name }}</li>
+                </ol>
+            </div>
+
+            <div class="col-md-9" ng-show="menu.category">
+                <h2>Category Info<span ng-if="menu.category.name">: <strong>{{menu.category.name}}</strong></span></h2>
+                <p><strong>{{menu.category.short_name}}</strong></p>
+                <p>{{menu.category.special_instructions}}</p>
+                <hr>
+
+
+                <ol ng-show="menu.items">
+                    <li ng-repeat="item in menu.items">{{item.name}}</li>
+                </ol>
+            </div>
+
+
+        </div>
+
+        <!--<div class="col-md-6">
+            <div ng-controller="MenuCategoryController as category">
+
+            </div>
+        </div>-->
+
+
+    </div>
+</div>
+
+</body>
+</html>

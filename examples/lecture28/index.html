@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ShoppingListApp">
+<head>
+    <meta charset="utf-8">
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <style>body{font-size:1.2em; font-family:Arial,sans-serif;} .addMessage { color:#4cae4c; font-weight:bold; }
+
+        .errorMessage{ color:#a00; font-weight: bold;}
+    </style>
+
+    <title>Custom Service through a Factory</title>
+</head>
+<body>
+
+<div class="container">
+    <h1>Custom Service through a Factory</h1>
+    <div class="row">
+
+        <!-- Shopping List 1 -->
+        <div class="col-md-6">
+            <div ng-controller="ShoppingListController1 as list1">
+                <shopping-list my-list="list1" my-title="{{ list1.title }}"></shopping-list>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+
+            <div ng-controller="ShoppingListController2 as list2">
+                <list-add-item-form my-list="list2"></list-add-item-form>
+
+                <h2>Shopping List #2</h2>
+                <p class="errorMessage">{{list2.errorMessage}}</p>
+                <ol>
+                    <list-item  ng-repeat="item in list2.items"></list-item>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
