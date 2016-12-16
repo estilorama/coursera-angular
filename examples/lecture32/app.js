@@ -8,16 +8,13 @@
 
 
     // App...
-    angular.module('ShoppingListApp', [])
+    angular.module('ShoppingListDirectiveApp', [])
 
     // Controladores
     .controller('ShoppingListController', ShoppingListController)
-    //.controller('ShoppingListController2', ShoppingListController2)
-    // Servicio
-    //.service('ShoppingListService', ShoppingListService);
     // Factory de servicio
     .factory('ShoppingListFactory', ShoppingListFactory)
-    .directive('listAddItemForm', ListAddItemForm)
+    //.directive('listAddItemForm', ListAddItemForm)
         /*
     .directive('listItemDescription', ListItemDescription)
     .directive('listItem', ListItem)*/
@@ -31,27 +28,81 @@
             templateUrl: 'template/shoppingList.html',
             scope: {
                 items: '<', // 1-way direction binding
-                title: '@'
+                title: '@',
+                badRemove: '=',
+                onRemove: '&'
             },
             controller: ShoppingListDirectiveController,
             controllerAs: 'list',
-            bindToController: true
+            bindToController: true,
+            link: ShoppingListDirectiveLink,
+            transclude: true // Activa el ng-transclude para esta directiva..
         };
+
         return ddo;
+    }
+
+    function ShoppingListDirectiveLink (scope, element, attrs, controller) {
+        console.log('"scope" is: ',scope);
+        console.log('"element" is: ',element);
+        //console.log('"attrs" is: ',attrs);
+        console.log('"controller" is: ',controller);
+
+        scope.$watch('list.cookiesInList()', function(newValue, oldValue)  {
+            console.log("Watching cookiesInList()");
+            console.log("Old value:", oldValue);
+            console.log("New value:", newValue);
+
+            // Else avoided. Toggle Cookie Warnign
+            removeCookieWarning();
+            if(newValue) displayCookieWarning();
+
+
+        });
+
+
+        // Movemos estas funciones dentro de la Link function, para poder tener acceso al element que vamos a manipular
+        function displayCookieWarning(){
+            // Using AngularJS jqLite
+            // var warningElement = element.find('div');
+            // console.log(warningElement);
+            // warningElement.css('display','block');
+
+            /* Using jQuery included before AngularJS */
+            var warningElem = element.find("div.error");
+            warningElem.slideDown(900);
+
+        }
+        function removeCookieWarning(){
+            // Using AngularJS jqLite
+            // var warningElement = element.find('div');
+            // console.log(warningElement);
+            // warningElement.css('display','none');
+
+            /* Using jQuery included before AngularJS */
+            /* Using jQuery included before AngularJS */
+            var warningElem = element.find("div.error");
+            warningElem.slideUp(900);
+        }
     }
 
 
     function ShoppingListDirectiveController(){
         var list = this;
+
+        console.log('"this" is ', this);
+
         list.cookiesInList = function () {
-            for(var i=0; i < list.items.lenght; i++) {
+
+            for(var i=0; i < list.items.length; i++) {
                 var name = list.items[i].name;
                 if(name.toLowerCase().indexOf('cookie') !== -1) {
                     return true;
                 }
-                return true;
             }
+            return false;
         }
+
     }
 
 
@@ -106,6 +157,7 @@
         list.addMessage = '';
 
         list.title='Shopping list #1 ('+list.items.length+') item';
+        list.warning = 'COOKIES DETECTED!!';
 
 
         // Añadir a la lista a través del servicio.
@@ -130,6 +182,9 @@
 
         // Eliminar...
         list.removeItem = function(itemIdx) {
+            console.log(' "this" is: ', this)
+            this.lastRemoved = 'Last item removed was '+this.items[itemIdx].name;
+
             shoppingList.removeItem(itemIdx);
             list.title='Shopping list #1 ('+list.items.length+') item';
         };
@@ -192,6 +247,7 @@
 
         // Añade un elemento
         service.addItem = function(itemName, itemQuantity) {
+
             // Si se alcanza el limite... error
             if (maxItems !== undefined && items.length === maxItems) throw new Error('Max items ('+maxItems+') reached!!');
             if(itemName === undefined || itemName ==='' ) throw new Error('Name can not be empty!!');

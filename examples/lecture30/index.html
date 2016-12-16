@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="ShoppingListApp">
+<html lang="en" ng-app="ShoppingListDirectiveApp">
 <head>
     <meta charset="utf-8">
     <script src="angular.min.js"></script>
@@ -12,12 +12,12 @@
         .errorMessage{ color:#a00; font-weight: bold;}
     </style>
 
-    <title>Directives with their own Controller</title>
+    <title>Directives with Isolated Scope and '&'</title>
 </head>
 <body>
 
 <div class="container">
-    <h1>Directives with their own Controller</h1>
+    <h1>Directives with Isolated Scope and '&'</h1>
     <div class="row">
 
         <!-- Shopping List 1 -->
@@ -30,8 +30,19 @@
                     <input type="text" size="4" ng-model="list.itemQuantity" placeholder="Item Qty">
                     <button ng-click="list.addItem()">Add</button> <span class="addMessage">{{list.addMessage}}</span>
                 </p>
+                <p>Last removed: {{list.lastRemoved}}</p>
 
-                <shopping-list items="list.items" title="{{list.title}}"></shopping-list>
+                <!--<shopping-list
+                        items="list.items"
+                        title="{{list.title}}"
+                        bad-remove="list.removeItem"
+                ></shopping-list>-->
+                <shopping-list
+                        items="list.items"
+                        title="{{list.title}}"
+                        bad-remove="list.removeItem"
+                        on-remove="list.removeItem(index)"
+                ></shopping-list>
             </div>
         </div>
 

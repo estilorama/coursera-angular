@@ -1,5 +1,9 @@
-<!--<list-add-item-form my-list="list"></list-add-item-form>-->
-
 <h2>{{list.title}}</h2>
+
+
+
 <p class="errorMessage">{{list.errorMessage}}</p>
-<ol><list-item  ng-repeat="item in list.items"></list-item></ol>
+<ol>
+    <li ng-repeat="item in list.items">{{item.quantity}} of {{item.name}}</li>
+   <!-- <list-item  ng-repeat="item in items"></list-item>-->
+</ol>

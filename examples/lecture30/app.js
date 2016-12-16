@@ -8,13 +8,10 @@
 
 
     // App...
-    angular.module('ShoppingListApp', [])
+    angular.module('ShoppingListDirectiveApp', [])
 
     // Controladores
     .controller('ShoppingListController', ShoppingListController)
-    //.controller('ShoppingListController2', ShoppingListController2)
-    // Servicio
-    //.service('ShoppingListService', ShoppingListService);
     // Factory de servicio
     .factory('ShoppingListFactory', ShoppingListFactory)
     .directive('listAddItemForm', ListAddItemForm)
@@ -31,12 +28,15 @@
             templateUrl: 'template/shoppingList.html',
             scope: {
                 items: '<', // 1-way direction binding
-                title: '@'
+                title: '@',
+                badRemove: '=',
+                onRemove: '&'
             },
             controller: ShoppingListDirectiveController,
             controllerAs: 'list',
             bindToController: true
         };
+
         return ddo;
     }
 
@@ -130,7 +130,9 @@
 
         // Eliminar...
         list.removeItem = function(itemIdx) {
+            console.log(' "this" is: ', this)
             shoppingList.removeItem(itemIdx);
+            this.lastRemoved = 'Last item removed was '+this.items[itemIdx].name;
             list.title='Shopping list #1 ('+list.items.length+') item';
         };
 
