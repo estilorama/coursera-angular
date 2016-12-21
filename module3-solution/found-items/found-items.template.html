@@ -1,0 +1,36 @@
+<items-loaders-indicator is-loading="searching">Searching ...</items-loaders-indicator>
+
+<div ng-if="finished && foundItems.length == 0">
+    <!-- Not found Message -->
+    <div class="error" ng-transclude></div>
+</div>
+
+<div ng-if="foundItems.length > 0">
+    <table class="table" cellpadding="5" cellspacing="5" summary="Chinese Menu results">
+        <legend>{{foundItems.length}} items found!</legend>
+        <thead>
+        <tr>
+
+            <th class="text-center">Id.</th>
+            <th class="text-center">Short name</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th class="text-center">Small</th>
+            <th class="text-center">Large</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in foundItems">
+                <td class="text-center">{{item.id}}</td>
+                <td class="text-center">{{item.short_name}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.description}}</td>
+                <td class="text-center"><span ng-if="item.price_small != null">$</span>{{item.price_small}}</td>
+                <td class="text-center"><span ng-if="item.price_large != null">$</span>{{item.price_large}}</td>
+                <td><button class="btn btn-danger"  ng-click="onRemove({index: $index})">Don't want this one!</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+

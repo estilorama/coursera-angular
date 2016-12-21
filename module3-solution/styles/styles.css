@@ -50,3 +50,10 @@ input[type="text"] {
     transform: rotate(360deg);
   }
 }
+
+
+
+/* CUSTOM STYLES DBOURGON */
+body{ overflow:scroll }
+.loader{ display:block; }
+.form-group{ width:auto;  float: left;}
