@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <link rel="stylesheet" href="styles/styles.css">
-      <style>
-        .error { color:#a00; }
-      </style>
+
+    <style>.error { color:#a00; }</style>
   </head>
 <body>
 
@@ -27,15 +26,14 @@
             </div>
         </div>
 
-
-
-        <div class="col-md-12">
-            <!-- <items-loader-indicator is-loading="main.searching"></items-loader-indicator> -->
-            <!-- found-items should be implemented as a component -->
-            <found-items my-items="main.found" is-finished="main.end" is-searching="main.searching" on-remove="main.remove(index)">
-                Nothing found.
-            </found-items>
-       </div>
+        <div class="row_fluid">
+            <div class="col-md-12">
+                <!-- found-items should be implemented as a component -->
+                <found-items my-items="main.found" is-finished="main.end" is-searching="main.searching" on-remove="main.remove(index)">
+                    Nothing found.
+                </found-items>
+           </div>
+        </div>
   </div>
 
 

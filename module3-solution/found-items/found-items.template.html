@@ -1,10 +1,12 @@
+<!-- Loading indicator -->
 <items-loaders-indicator is-loading="searching">Searching ...</items-loaders-indicator>
 
+<!-- Not found Message -->
 <div ng-if="finished && foundItems.length == 0">
-    <!-- Not found Message -->
     <div class="error" ng-transclude></div>
 </div>
 
+<!-- Item results in a table  -->
 <div ng-if="foundItems.length > 0">
     <table class="table" cellpadding="5" cellspacing="5" summary="Chinese Menu results">
         <legend>{{foundItems.length}} items found!</legend>

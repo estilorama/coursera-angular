@@ -14,9 +14,9 @@
         .directive('itemsLoadersIndicator', ItemsLoaderIndicatorDirective)
         .constant('ApiBasePath', 'https://davids-restaurant.herokuapp.com');
 
-    //////
-    //      FoundItemsDirective
-    /////
+    ///////////////
+    // DIRECTIVE:  FoundItemsDirective
+    //////////////
     function FoundItemsDirective() {
         var ddo = {
             templateUrl: 'found-items/found-items.template.html',
@@ -31,14 +31,16 @@
         };
         return ddo;
     }
-    //////
-    //     Directive controller: FoundItemsController
-    /////
+    ///////////////
+    // DIRECTIVE CTRL:  FoundItemsDirective
+    //////////////
     function FoundItemsController() {
         var foundItemsCtrl = this;
     }
 
-
+    ///////////////
+    // DIRECTIVE:  ItemsLoaderIndicatorDirective
+    //////////////
     function ItemsLoaderIndicatorDirective() {
         var ddo = {
             restrict: 'E',
@@ -52,10 +54,9 @@
     }
 
 
-    /**
-     * MenuSearchService
-     * Search Service
-     */
+    ///////////////
+    // SERVICE:     MenuSearchService
+    //////////////
     MenuSearchService.$inject = ['$http', 'ApiBasePath'];
     function MenuSearchService($http, ApiBasePath) {
         var service = this;
@@ -64,7 +65,6 @@
         // Method getMatchedMenuItems
         // Query the API and manage the results and filtering
         service.getMatchedMenuItems = function (searchTerm) {
-            //console.log('Service searchTerm: '+searchTerm);
             return $http({
                 method: 'get',
                 url: (ApiBasePath + '/menu_items.json')
@@ -84,7 +84,6 @@
             if (dataSet.length == 0) return [];
             if (term === '') return dataSet;
 
-            //console.log('filterDataSet', term, dataSet);
             var filteredData = [];
             for (var i = 0; i < dataSet.length; i++) {
                 // If the current element pass
@@ -96,12 +95,10 @@
 
         // Receives an element and a term. It cheks if any prop defined in arrComparableProps, contains the term...
         function checkStringInElement(term, element) {
-            //console.log('Checking term "' + term + '" in element: ', JSON.stringify(element));
             // I use regular expression for term matching and arrComparableProps definition to seek in element props
             var termRegExp = new RegExp(term.toLowerCase());
             for (var i = 0; i < arrComparableProps.length; i++) {
                 var prop = arrComparableProps[i];
-                //console.log(term.toLowerCase()+ ' - '+ element[prop]);
                 if (termRegExp.test(element[prop].toLowerCase())) return true;
             }
             return false;
@@ -110,11 +107,9 @@
 
     }
 
-    /**
-     * NarrowItDownController
-     * Main Controller
-     * @type {[*]} $http injection
-     */
+    ///////////////
+    // CONTROLLER:     NarrowItDownController
+    //////////////
     NarrowItDownController.$inject = ['MenuSearchService'];
     function NarrowItDownController(MenuSearchService) {
         var ctrl = this;
@@ -142,15 +137,11 @@
                     ctrl.found = items;
                     ctrl.searching = false;
                     ctrl.end = true;
-
-                    //console.log('getMatchedOK', items);
                 })
                 .catch(function (error) {
                     ctrl.found = [];
                     ctrl.searching = false;
                     ctrl.end = true;
-
-                    //console.log('getMatchedKO', error);
                 });
         };
 
