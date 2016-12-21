@@ -12,7 +12,7 @@
         .service('MenuSearchService', MenuSearchService)
         .directive('foundItems', FoundItemsDirective)
         .directive('itemsLoadersIndicator', ItemsLoaderIndicatorDirective)
-        .constant('ApiBasePath', 'http://davids-restaurant.herokuapp.com');
+        .constant('ApiBasePath', 'https://davids-restaurant.herokuapp.com');
 
     //////
     //      FoundItemsDirective
@@ -96,7 +96,7 @@
 
         // Receives an element and a term. It cheks if any prop defined in arrComparableProps, contains the term...
         function checkStringInElement(term, element) {
-            console.log('Checking term "' + term + '" in element: ', JSON.stringify(element));
+            //console.log('Checking term "' + term + '" in element: ', JSON.stringify(element));
             // I use regular expression for term matching and arrComparableProps definition to seek in element props
             var termRegExp = new RegExp(term.toLowerCase());
             for (var i = 0; i < arrComparableProps.length; i++) {
@@ -143,14 +143,14 @@
                     ctrl.searching = false;
                     ctrl.end = true;
 
-                    console.log('getMatchedOK', items);
+                    //console.log('getMatchedOK', items);
                 })
                 .catch(function (error) {
                     ctrl.found = [];
                     ctrl.searching = false;
                     ctrl.end = true;
 
-                    console.log('getMatchedKO', error);
+                    //console.log('getMatchedKO', error);
                 });
         };
 
