@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ShoppingListComponentApp">
+<head>
+    <meta charset="utf-8">
+    <script
+            src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <style>
+        body{font-size:1.2em; font-family:Arial,sans-serif;}
+        .addMessage { color:#4cae4c; font-weight:bold; }
+        .errorMessage{ color:#a00; font-weight: bold;}
+        .error{ color:#a00; font-weight: bold; display: none; }
+    </style>
+
+    <title>Shopping List with Components</title>
+</head>
+<body>
+
+<div class="container">
+    <h1>Shopping List with Components</h1>
+    <div class="row">
+        <!-- Shopping List 1 -->
+        <div class="col-md-6">
+
+
+            <div id="list" ng-controller="ShoppingListController as list">
+                <h3>Add item</h3>
+                <p>
+                    <input type="text" ng-model="list.itemName" placeholder="Item name" size="20">
+                    <input type="text" size="4" ng-model="list.itemQuantity" placeholder="Item Qty">
+                    <button ng-click="list.addItem()">Add</button> <span class="addMessage">{{list.addMessage}}</span>
+                </p>
+                <p>Last removed: {{list.lastRemoved}}</p>
+
+                <!--<shopping-list
+                        items="list.items"
+                        title="{{list.title}}"
+                        bad-remove="list.removeItem"
+                ></shopping-list>-->
+                <shopping-list
+                        items="list.items"
+                        title="{{list.title}}"
+                        bad-remove="list.removeItem"
+                        on-remove="list.removeItem(index)"
+                ></shopping-list>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

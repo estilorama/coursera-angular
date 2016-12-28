@@ -1,0 +1,11 @@
+<h2>{{$ctrl.title}}</h2>
+
+<p class="errorMessage">{{$ctrl.errorMessage}}</p>
+<ol>
+    <li ng-repeat="item in $ctrl.items">{{item.quantity}} of {{item.name}}
+        <!--<button ng-click="list.badRemove($index)" class="btn btn-danger btn-xs">bad remove</button>-->
+        <button ng-click="$ctrl.remove($index)">Remove</button>
+    </li>
+   <!-- <list-item  ng-repeat="item in items"></list-item>-->
+</ol>
+<div class="error">WARNING! WARNING! COOKIES DETECTED!</div>
