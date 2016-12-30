@@ -20,7 +20,7 @@
 
             // Home state
             .state('home', {
-                url: '/',
+                url: '',
                 templateUrl: 'src/menuapp/template/home.template.html'
             })
 
