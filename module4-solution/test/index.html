@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="TestApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+</head>
+<body ng-controller="TestAppController as test">
+
+    <div >
+        <h1>Categories</h1>
+        <ul>
+            <li ng-repeat="cat in test.categories" ng-click="">{{cat.name}} </li>
+        </ul>
+    </div>
+
+    <!-- Lib -->
+    <script src="../lib/angular.min.js"></script>
+    <script src="../lib/angular-ui-router.min.js"></script>
+
+    <!-- Modules -->
+    <script src="src/testapp.module.js"></script>
+    <script src="../src/menudata/data.module.js"></script>
+    <script src="../src/spinner/spinner.module.js"></script>
+
+    <!-- Routes -->
+    <!--<script src="src/routes.js"></script>-->
+
+
+    <!-- ------------------------------------------------------------------------------- --
+            Artifacts
+      ---------------------------------------------------------------------------------- -->
+    <!-- MenuData Service -->
+    <script src="../src/menudata/menudata.service.js"></script>
+
+    <!-- MenuData Components -->
+    <script src="../src/menudata/categories/categories.component.js"></script>
+    <script src="../src/menudata/items/items.component.js"></script>
+
+    <!-- CategoriesController -->
+    <script src="../src/menudata/categories/categories.controller.js"></script>
+
+    <script src="src/testapp.controller.js"></script>
+</body>
+</html>

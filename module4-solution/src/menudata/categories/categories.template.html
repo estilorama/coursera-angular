@@ -1,0 +1,11 @@
+<!-- Menu -->
+<h2>Categories list</h2>
+<nav>
+
+    <ul class="nav navbar-default">
+        <li class="navbar-link" ng-repeat="category in $ctrl.categories">
+            <a ui-sref-active-eq="selected" ui-sref="categories.items({categoryShortName: category.short_name })" class="btn-xs"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> {{category.name}}</a>
+        </li>
+    </ul>
+</nav>
+<div class="clearfix"></div>

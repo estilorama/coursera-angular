@@ -1,0 +1,13 @@
+<p class="breadcrumbs">
+    You are here:
+    <a ui-sref="home">Our Restaurant</a>
+
+    <span ng-if="$ctrl.categoryName">
+        &gt; <a ui-sref="categories">Categories</a>
+        &gt; <strong>{{$ctrl.categoryName}}</strong>
+    </span>
+
+    <span ng-if="!$ctrl.categoryName">
+        &gt; <strong>Categories</strong>
+    </span>
+</p>

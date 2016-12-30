@@ -1,0 +1,18 @@
+<h2>{{$ctrl.category.name}} items</h2>
+
+<p ng-if="$ctrl.category.special_instructions"><strong>Special instructions:</strong> <em>{{$ctrl.category.special_instructions}}</em></p>
+
+<table cellpadding="3" cellspacing="3" border="none" class="table table-bordered">
+    <tr>
+        <th class="text-center" width="100">Short Name</th>
+        <th>Name/Description</th>
+        <th class="text-center" width="100">Price (small)</th>
+        <th class="text-center" width="100">Price (large)</th>
+    </tr>
+    <tr ng-repeat="item in $ctrl.items">
+        <td class="text-center">{{item.short_name}}</td>
+        <td><strong>{{item.name}}</strong><br> {{item.description}}</td>
+        <td class="text-center"><span ng-if="item.price_small">$</span> {{item.price_small}}</td>
+        <td class="text-center"><span ng-if="item.price_large">$</span> {{item.price_large}}</td>
+    </tr>
+</table>

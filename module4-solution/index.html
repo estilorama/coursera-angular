@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="MenuApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Our Restaurant</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <div class="container-fluid">
+        <div class="col-md-12">
+            <h1><a ui-sref="home" title="Home">Our Restaurant</a></h1>
+        </div>
+    </div>
+</header>
+
+<!-- Container -->
+<div id="container">
+
+    <!-- Nav+Content -->
+    <ui-view></ui-view>
+    <!-- Spinner -->
+    <loading-spinner></loading-spinner>
+
+    <div class="clearfix"></div>
+</div>
+
+<!-- Footer -->
+<footer class="">
+    <div class="col-md-12">
+        <p><a ui-sref="home"><strong>Our Restaurant</strong></a> - David Bourgon Salinero</p>
+    </div>
+</footer>
+
+<!-- Lib -->
+<script src="lib/angular.min.js"></script>
+<script src="lib/angular-ui-router.min.js"></script>
+
+<!-- Modules -->
+<script src="src/menuapp/menuapp.module.js"></script>
+<script src="src/menudata/data.module.js"></script>
+<script src="src/spinner/spinner.module.js"></script>
+
+<!-- Routes -->
+<script src="src/routes.js"></script>
+
+
+<!-- ------------------------------------------------------------------------------- --
+        Artifacts
+  ---------------------------------------------------------------------------------- -->
+<!-- MenuData Service -->
+<script src="src/menudata/menudata.service.js"></script>
+
+<!-- MenuData Components -->
+<script src="src/menudata/categories/categories.component.js"></script>
+<script src="src/menudata/items/items.component.js"></script>
+
+<!-- CategoriesController -->
+<script src="src/menudata/categories/categories.controller.js"></script>
+
+<!-- ItemsController -->
+<script src="src/menudata/items/items.controller.js"></script>
+
+<!-- 'Spinner' module artifacts -->
+<script src="src/spinner/spinner.component.js"></script>
+
+
+</body>
+</html>

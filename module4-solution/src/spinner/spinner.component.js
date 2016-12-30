@@ -20,22 +20,22 @@
         var $ctrl = this;
         var cancellers = [];
 
-        // onInit
         $ctrl.$onInit = function () {
+            //console.log('Spinner', 'Init');
 
             // Capture stateChangeStart Event
             var cancel = $rootScope.$on('$stateChangeStart',
                 function(event, toState, toParams, fromState, fromParams, options){
-                    console.log('Spinner Controller','on stateChange START');
-                    $ctrl.show();
+
+                    $ctrl.showSpinner = true;
                 });
                 cancellers.push(cancel);
 
             // Capture stateChangeStart Success Event
                 cancel = $rootScope.$on('$stateChangeSuccess',
                 function(event, toState, toParams, fromState, fromParams){
-                    console.log('Spinner Controller','on stateChange SUCCESS');
-                    $ctrl.hide();
+
+                    $ctrl.showSpinner = false;
                 });
                 cancellers.push(cancel);
 
@@ -43,25 +43,22 @@
                 cancel = $rootScope.$on('$stateChangeError',
                 function(event, toState, toParams, fromState, fromParams, error){
                     console.log('Spinner Controller','on stateChange ERROR');
-                    $ctrl.hide();
+                    $ctrl.showSpinner = false;
                 });
                 cancellers.push(cancel);
         };
 
-        // Destructor
+       /* var cancelListener = $rootScope.$on('shoppinglist:processing', function(event, data){
+            console.log('Event: ', event);
+            console.log('Data: ', data);
+            $ctrl.showSpinner = (data.on);
+        });*/
+
+        // LiberacIón de memoria
         $ctrl.$onDestroy = function(){
             cancellers.forEach(function(item){
                item();
             });
-        };
-
-
-        $ctrl.show = function() {
-            $ctrl.showSpinner = false;
-        };
-
-        $ctrl.hide = function () {
-          $ctrl.showSpinner = false;
         };
     }
 
