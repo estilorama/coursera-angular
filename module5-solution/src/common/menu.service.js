@@ -10,8 +10,6 @@ function MenuService($http, ApiPath) {
   var service = this;
 
   service.getCategories = function () {
-
-    console.log(ApiPath);
     return $http.get(ApiPath + '/categories.json').then(function (response) {
       return response.data;
     });
@@ -28,15 +26,6 @@ function MenuService($http, ApiPath) {
       return response.data;
     });
   };
-
-
-  service.validateMenuItem = function(shortName) {
-    var allItems = service.getMenuItems();
-
-  }
-
-
-
 
 }
 
