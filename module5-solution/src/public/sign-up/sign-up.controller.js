@@ -18,6 +18,7 @@
         signUpCtrl.notValid = false;
 
         signUpCtrl.submit = function() {
+            signUpCtrl.notValid = false;
 
             // ShortName valid, continue ...
             var shortName = signUpCtrl.user.favouriteDish.toLowerCase();
@@ -25,7 +26,7 @@
             var validateShortName = MenuService.getMenuItems().then(
             function(response) {
              for(var i= 0; i < response.menu_items.length; i++) {
-                    console.log(shortName, response.menu_items[i].short_name.toLowerCase());
+                    //console.log(shortName, response.menu_items[i].short_name.toLowerCase());
                     if(response.menu_items[i].short_name.toLowerCase() === shortName.toLowerCase()) {
                         signUpCtrl.saveData(response.menu_items[i]);
                         break;
