@@ -31,9 +31,11 @@
                         break;
                     }
                 }
+                // ShortName not found, show message ...
+                signUpCtrl.notValid = true;
             },
             function(error) {
-                // ShortName invalid, show message ...
+                // Error, show message ...
                 signUpCtrl.notValid = true;
             });
         };
