@@ -12,9 +12,7 @@
     .component('breadCrumbs', {
         templateUrl: 'src/menudata/breadcrumbs/breadcrumbs.template.html',
         controllerAs: '$ctrl',
-        bindings: {
-            categoryName: '<'
-        }
+        bindings: { categoryName: '<' }
     });
 
 })();

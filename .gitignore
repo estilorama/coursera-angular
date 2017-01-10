@@ -40,3 +40,9 @@ Thumbs.db
 # IDE Project files #
 #####################
 .idea/
+
+
+
+# Restaurant Server #
+#####################
+restaurant-server/
