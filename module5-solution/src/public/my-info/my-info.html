@@ -1,0 +1,47 @@
+<div class="container">
+    <h2 class="title text-center">My Info</h2>
+    <div class="text-center"><span ng-if="myInfoCtrl.isSigned()">This is your signed info: </span></div>
+
+    <div class="col-md-4 col-md-offset-4"  ng-if="myInfoCtrl.isSigned()">
+        <h3>User</h3>
+        <table cellspacing="10" cellpadding="5" border="0" class="table">
+            <tr>
+                <th>First name</th>
+                <td>{{myInfoCtrl.user.firstName}}</td>
+            </tr>
+            <tr>
+                <th>Last name</th>
+                <td>{{myInfoCtrl.user.lastName}}</td>
+            </tr>
+            <tr>
+                <th>Email address</th>
+                <td>{{myInfoCtrl.user.emailAddress}}</td>
+            </tr>
+            <tr>
+                <th>Phone number</th>
+                <td>{{myInfoCtrl.user.phoneNumber}}</td>
+            </tr>
+
+        </table>
+
+        <h3>Favourite dish</h3>
+        <table cellspacing="10" cellpadding="5" border="0" class="table">
+            <tr>
+                <th>Favourite dish</th>
+                <td>{{myInfoCtrl.user.favouriteDish}}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{myInfoCtrl.favourite.name}}</td>
+            </tr>
+            <tr ng-if="myInfoCtrl.favourite.image_present">
+                <th>Image</th>
+                <td><img ng-src="{{myInfoCtrl.basePath}}/images/{{myInfoCtrl.favourite.short_name}}.jpg" alt="{{myInfoCtrl.favourite.name}}"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="col-md-4 col-md-offset-4  text-center"  ng-if="!myInfoCtrl.isSigned()">
+        <p>Not Signed Up Yet. <a href="#" ui-sref="public.signup">Sign up Now!</a></p>
+    </div>
+</div>

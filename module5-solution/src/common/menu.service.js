@@ -27,6 +27,10 @@ function MenuService($http, ApiPath) {
     });
   };
 
+
+  service.validateShortName = function (shortName) {
+
+  }
 }
 
 

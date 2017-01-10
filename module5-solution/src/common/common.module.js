@@ -3,6 +3,7 @@
 
 angular.module('common', [])
 .constant('ApiPath', 'https://estilorama-restaurant.herokuapp.com')
+//.constant('ApiPath', 'http://estilorama-restaurant.herokuapp.com')
 .config(config);
 
 config.$inject = ['$httpProvider'];
